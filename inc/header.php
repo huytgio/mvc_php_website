@@ -40,7 +40,7 @@
 							</a>
 						</div>
 			      </div>
-		   <div class="login"><a href="login.php">Đăng Nhập</a></div>
+		   <div class="login"><a href="admin/login.php">Đăng Nhập</a></div>
 		 <div class="clear"></div>
 	 </div>
 	 <div class="clear"></div>

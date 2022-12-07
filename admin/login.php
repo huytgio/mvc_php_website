@@ -6,8 +6,7 @@ include '../classes/adminlogin.php';
   {
 	$class = new adminlogin();
 	$admin_User = $_POST['admin_User'];
-	$admin_Pass = $_POST['admin_Pass'];
-
+	$admin_Pass = md5($_POST['admin_Pass']);
 	$login_check = $class->login_admin($admin_User,$admin_Pass);
   }
 ?>
@@ -15,7 +14,7 @@ include '../classes/adminlogin.php';
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>Login</title>
+<title>Đăng nhập</title>
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css" media="screen" />
 </head>
 <body>
@@ -29,20 +28,21 @@ include '../classes/adminlogin.php';
 				{
 					echo $login_check;
 				}
+				
 				?>
 			</span>
 			<div>
-				<input type="text" placeholder="Username" required="" name="admin_User"/>
+				<input type="text" placeholder="Username" required="Không đc để trống" name="admin_User"/>
 			</div>
 			<div>
-				<input type="password" placeholder="Password" required="" name="admin_Pass"/>
+				<input type="password" placeholder="Password" required="Không đc để trống" name="admin_Pass"/>
 			</div>
 			<div>
 				<input type="submit" value="Log in" />
 			</div>
 		</form><!-- form -->
 		<div class="button">
-			<a href="#">Training with live project</a>
+			<a href="#">Trang đăng nhập</a>
 		</div><!-- button -->
 	</section><!-- content -->
 </div><!-- container -->

@@ -1,5 +1,4 @@
 <?php
-include '../config/config.php';
 Class Database{
    public $host   = DB_HOST;
    public $user   = DB_USER;
@@ -10,8 +9,19 @@ Class Database{
    public $link;
    public $error;
  
- public function __construct(){
+ public function __construct($link){
   $this->connectDB();
+  //$this->getlink();
+  $this->link = new mysqli('localhost','root','','mvc');
+ }
+
+ function get_link(){
+  return $this->link;
+ }
+ private function getlink()
+ {
+  $this->link = new mysqli('localhost','root','','mvc');
+  return $this->link;
  }
  
 private function connectDB(){
