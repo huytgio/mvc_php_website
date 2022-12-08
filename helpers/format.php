@@ -3,6 +3,12 @@
 * Format Class
 */
 class Format{
+   public $data;
+
+   public function __construct()
+   {
+      
+   }
  public function formatDate($date){
     return date('F j, Y, g:i a', strtotime($date));
  }
@@ -32,6 +38,12 @@ class Format{
      $title = 'contact';
     }
     return $title = ucfirst($title);
+   }
+
+   public function pluss($data1,$data2)
+   {
+      $data3 = $data1;
+      return $data3;
    }
 }
 ?>

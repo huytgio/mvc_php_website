@@ -1,28 +1,28 @@
 <?php
 Class Database{
-   public $host   = DB_HOST;
-   public $user   = DB_USER;
-   public $pass   = DB_PASS;
-   public $dbname = DB_NAME;
+   public $host   = 'localhost';
+   public $user   = 'root';
+   public $pass   = '';
+   public $dbname = 'mvc';
  
  
    public $link;
    public $error;
  
- public function __construct($link){
+ public function __construct(){
   $this->connectDB();
   //$this->getlink();
-  $this->link = new mysqli('localhost','root','','mvc');
+  //$this->link = new mysqli('localhost','root','','mvc');
  }
 
- function get_link(){
+ /* function get_link(){
   return $this->link;
- }
- private function getlink()
+ } */
+ /* private function getlink()
  {
   $this->link = new mysqli('localhost','root','','mvc');
   return $this->link;
- }
+ } */
  
 private function connectDB(){
    $this->link = new mysqli($this->host, $this->user, $this->pass, 

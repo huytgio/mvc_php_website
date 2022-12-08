@@ -1,14 +1,30 @@
 ﻿<?php include 'inc/header.php';?>
-<?php include 'inc/sidebar.php';?>
+<?php include 'inc/sidebar.php';
+include '../classes/category.php';
+  $cat = new category();
+if($_SERVER['REQUEST_METHOD'] === 'POST')
+  {
+	$cat_Name = $_POST['cat_Name'];
+    $insertCat = $cat->insert_category($cat_Name);
+  }
+
+
+?>
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Add New Category</h2>
+                <h2>Thêm danh mục mới</h2>
+                <?php
+                if (isset($insertCat))
+                {
+                    echo $insertCat;
+                }
+                ?>
                <div class="block copyblock"> 
-                 <form>
+                 <form action = "catadd.php" method = "post">
                     <table class="form">					
                         <tr>
                             <td>
-                                <input type="text" placeholder="Enter Category Name..." class="medium" />
+                                <input type="text" name = "cat_Name" placeholder="Nhập tên danh mục tại dây!" class="medium" />
                             </td>
                         </tr>
 						<tr> 

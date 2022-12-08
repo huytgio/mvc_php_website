@@ -2,13 +2,15 @@
 include '../classes/adminlogin.php';
 ?>
 <?php
-  if($_SERVER['REQUEST_METHOD'] === 'POST')
+  $class = new adminlogin();
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
-	$class = new adminlogin();
 	$admin_User = $_POST['admin_User'];
 	$admin_Pass = md5($_POST['admin_Pass']);
 	$login_check = $class->login_admin($admin_User,$admin_Pass);
   }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +26,7 @@ include '../classes/adminlogin.php';
 			<h1>Đăng nhập</h1>
 			<span>
 				<?php
+                
 				if(isset($login_check))
 				{
 					echo $login_check;
@@ -32,10 +35,10 @@ include '../classes/adminlogin.php';
 				?>
 			</span>
 			<div>
-				<input type="text" placeholder="Username" required="Không đc để trống" name="admin_User"/>
+				<input type="text" placeholder="Username"  name="admin_User"/>
 			</div>
 			<div>
-				<input type="password" placeholder="Password" required="Không đc để trống" name="admin_Pass"/>
+				<input type="password" placeholder="Password"  name="admin_Pass"/>
 			</div>
 			<div>
 				<input type="submit" value="Log in" />
