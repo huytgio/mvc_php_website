@@ -1,7 +1,7 @@
 ﻿<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';
 include '../classes/category.php';
-  $cat = new category();
+$cat = new category();
 if($_SERVER['REQUEST_METHOD'] === 'POST')
   {
 	$cat_Name = $_POST['cat_Name'];
