@@ -1,4 +1,4 @@
-﻿<style>
+<style>
 .alert {
   padding: 20px;
   background-color: #f44336;
@@ -9,7 +9,7 @@
 }
 
 .alert.success {background-color: #04AA6D;}
-.alert.info {background-color: #2196F3;}
+.alert.info {background-color: #CAC8C8;}
 .alert.warning {background-color: #ff9800;}
 
 .closebtn {
@@ -32,27 +32,41 @@
       include '../classes/category.php';
       include '../classes/brand.php';
       include '../classes/product.php';
-
+      
+      
+      if(isset($_GET['product_ID']) && $_GET['product_ID']!=NULL)
+      {
+          $id = $_GET['product_ID'];
+      }
       $pd = new product();
-      if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']))
+      if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-          $insertProduct = $pd->insert_product($_POST,$_FILES);
+           $updatePD = $pd->update_Product($_POST, $_FILES, $id);
         }
 ?>
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Thêm sản phẩm mới</h2>
+        <h2>Sửa sản phẩm</h2>
         <div class="block">
         <div class="alert info">
         <span class="closebtn">&times;</span>
         <?php
-                if (isset($insertProduct))
+                if (isset($updatePD))
                 {
-                    echo $insertProduct;
+                    echo $updatePD;
                 }
-                ?>  
-        </div>         
-         <form action="productadd.php" method="post" enctype="multipart/form-data">
+        ?> 
+        </div>
+        <?php
+        $get_pd_by_ID = $pd->getpdbyID($id);
+        if ($get_pd_by_ID) {
+            while ($result_pd = $get_pd_by_ID->fetch_assoc()) {
+
+
+
+
+        ?>         
+         <form action="" method="post" enctype="multipart/form-data">
             <table class="form">
                
                 <tr>
@@ -60,7 +74,7 @@
                         <label>Tên</label>
                     </td>
                     <td>
-                        <input type="text" name="product_Name" placeholder="Nhập tên sản phẩm " class="medium" />
+                        <input type="text" name="product_Name" value="<?php echo $result_pd['product_Name']?>" placeholder="Nhập tên sản phẩm " class="medium" />
                     </td>
                 </tr>
 				<tr>
@@ -68,23 +82,29 @@
                         <label>Danh mục</label>
                     </td>
                     <td>
-                        <select id="select" name="category">
+                        <select id="select"  name="category">
                             <option>--------Chọn danh mục--------</option>
                             <?php
-                            $cat = new category();
-                            $catlist = $cat->show_category();
-                            if($catlist)
-                            {
-                                while($result = $catlist->fetch_assoc())
-                                {
+                $cat = new category();
+                $catlist = $cat->show_category();
+                if ($catlist) {
+                    while ($result = $catlist->fetch_assoc()) {
 
-                                
+
+
+                            ?>
+                            <option
+                            <?php
+                        if ($result['cat_ID'] == $result_pd['cat_ID']) 
+                        {
+                            echo 'selected';
+                        }
                             
                             ?>
-                            <option value="<?php echo $result['cat_ID']?>">+<?php echo $result['cat_Name']?> </option>
+                            value="<?php echo $result['cat_ID'] ?>">+<?php echo $result['cat_Name'] ?> </option>
                             <?php
-                             }
-                            }
+                    }
+                }
                             ?>
                         </select>
                     </td>
@@ -96,18 +116,25 @@
                     <td>
                         <select id="select" name="brand">
                             <option>--------Chọn nhãn hiệu--------</option>
-                            <?php 
-                            $brand = new brand();
-                            $brandlist = $brand->show_brand();
-                            if($brandlist)
-                            {
-                                while($result = $brandlist->fetch_assoc())
-                                {
-                            ?>
-                            <option value="<?php echo $result['brand_ID']?>">+<?php echo $result['brand_Name']?> </option>
                             <?php
-                             }
-                            }
+                $brand = new brand();
+                $brandlist = $brand->show_brand();
+                if ($brandlist) {
+                    while ($result = $brandlist->fetch_assoc()) {
+                            ?>
+                            <option
+                            <?php
+                        if ($result['brand_ID'] == $result_pd['brand_ID']) 
+                        {
+                            echo 'selected';
+                        }
+                            
+                            ?>
+                            
+                            value="<?php echo $result['brand_ID'] ?>">+<?php echo $result['brand_Name'] ?> </option>
+                            <?php
+                    }
+                }
                             ?>
                     
                         </select>
@@ -119,7 +146,7 @@
                         <label>Miêu tả</label>
                     </td>
                     <td>
-                        <input type="text" name="product_desc" placeholder="Nhập miêu tả" class="tinymce"/>
+                        <input type="text" name="product_desc" value="<?php echo $result_pd['product_desc']?>" placeholder="Nhập miêu tả" class="tinymce"/>
                     </td>
                 </tr>
 				<tr>
@@ -127,7 +154,7 @@
                         <label>Giá</label>
                     </td>
                     <td>
-                        <input type="text" name="price" placeholder="Nhập giá" class="medium" />
+                        <input type="text" name="price" value="<?php echo $result_pd['price']?>" placeholder="Nhập giá" class="medium" />
                     </td>
                 </tr>
             
@@ -136,6 +163,7 @@
                         <label>Thêm hình ảnh</label>
                     </td>
                     <td>
+                        <img src="./upload/<?php echo $result_pd['image']?>" width="100"></br>
                         <input type="file" name="image" />
                     </td>
                 </tr>
@@ -147,8 +175,23 @@
                     <td>
                         <select id="select" name="pd_status">
                             <option>Chọn trạng thái</option>
-                            <option value="1">Hàng mới</option>
-                            <option value="0">Hàng qua tay</option>
+                    <?php 
+					if($result_pd['pd_status']==1)
+					{
+                    ?>
+                        <option selected value="1">Hàng mới</option>
+                        <option value="0">Hàng qua tay</option>
+                    <?php
+					}elseif($result_pd['pd_status']==0)
+					{
+                    ?>
+                        <option value="1">Hàng mới</option>
+                        <option selected value="0">Hàng qua tay</option>
+                    <?php
+					}
+					?>
+                            
+                            
                         </select>
                     </td>
                 </tr>
@@ -156,11 +199,15 @@
 				<tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Save" />
+                        <input type="submit" name="submit" Value="Update" />
                     </td>
                 </tr>
             </table>
             </form>
+            <?php
+            }
+        }
+            ?>
         </div>
     </div>
 </div>

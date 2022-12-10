@@ -6,8 +6,8 @@
 						 <a href="details.php"> <img src="images/iphone.png" alt="" /></a>
 					</div>
 				    <div class="text list_2_of_1">
-						<h2>Iphone</h2>
-						<p>Iphone cho nhà giàu</p>
+						<h2>Điện thoại cao cấp</h2>
+						
 						<div class="button"><span><a href="details.php">Chi tiết</a></span></div>
 				   </div>
 			   </div>			
@@ -16,8 +16,8 @@
 						  <a href="details.php"><img src="images/samsung.png" alt="" /></a>
 					</div>
 					<div class="text list_2_of_1">
-						  <h2>Samsung</h2>
-						  <p>Samsung cho nhà khá giả</p>
+						  <h2>Điện thoại tầm trung</h2>
+						  
 						  <div class="button"><span><a href="details.php">Chi tiết</a></span></div>
 					</div>
 				</div>
@@ -28,8 +28,8 @@
 						 <a href="details.php"> <img src="images/nokia.png" alt="" /></a>
 					</div>
 				    <div class="text list_2_of_1">
-						<h2>Nokia</h2>
-						<p>Nokia cho nhà nghèo</p>
+						<h2>Điện thoại bình dân</h2>
+						
 						<div class="button"><span><a href="details.php">Chi tiết</a></span></div>
 				   </div>
 			   </div>			
@@ -38,8 +38,8 @@
 						  <a href="details.php"><img src="images/black.png" alt="" /></a>
 					</div>
 					<div class="text list_2_of_1">
-						  <h2>Blackberry</h2>
-						  <p>Blackberry có tiền là mua được</p>
+						  <h2>Phụ kiện</h2>
+						  
 						  <div class="button"><span><a href="details.php">Chi tiết</a></span></div>
 					</div>
 				</div>
@@ -56,6 +56,7 @@
 						<li><img src="images/2a.png" alt=""/></li>
 						<li><img src="images/3a.png" alt=""/></li>
 						<li><img src="images/4a.png" alt=""/></li>
+						<li><img src="images/1.jpg" alt=""/></li>
 				    </ul>
 				  </div>
 	      </section>

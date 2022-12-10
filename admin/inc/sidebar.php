@@ -8,6 +8,24 @@
                         <li><a href="catlist.php">Các danh mục</a> </li>
                     </ul>
                 </li>
+                <li><a class="menuitem">Thương Hiệu sản phẩm</a>
+                    <ul class="submenu">
+                        <li><a href="brandadd.php">Thêm Thương Hiệu mới</a> </li>
+                        <li><a href="brandlist.php">Các Thương Hiệu</a> </li>
+                    </ul>
+                    <li><a class="menuitem">Sản Phẩm</a>
+                    <ul class="submenu">
+                        <li><a href="productadd.php">Thêm sản phẩm</a> </li>
+                        <li><a href="productlist.php">Quản lý sản phẩm</a> </li>
+                    </ul>
+                </li>
+                </li>
+                <li><a class="menuitem">Update Pages</a>
+                    <ul class="submenu">
+                        <li><a>About Us</a></li>
+                        <li><a>Contact Us</a></li>
+                    </ul>
+                </li>
                <li><a class="menuitem">Site Option</a>
                     <ul class="submenu">
                         <li><a href="titleslogan.php">Title & Slogan</a></li>
@@ -30,12 +48,7 @@
                     </ul>
                 </li>
                 
-                <li><a class="menuitem">Product Option</a>
-                    <ul class="submenu">
-                        <li><a href="addproduct.php">Add Product</a> </li>
-                        <li><a href="productlist.php">Product List</a> </li>
-                    </ul>
-                </li>
+                
             </ul>
         </div>
     </div>

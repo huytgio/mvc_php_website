@@ -1,6 +1,6 @@
 <?php
-include '../lib/database.php';
-include '../helpers/format.php';
+include_once '../lib/database.php';
+include_once '../helpers/format.php';
 
  class category 
  {
@@ -77,7 +77,7 @@ include '../helpers/format.php';
         } else
         {
             $query = "UPDATE tbl_category SET cat_Name = '$cat_Name' WHERE cat_ID='$id'";
-            $result = $this->db->insert($query);
+            $result = $this->db->update($query);
 
             if($result)
             {

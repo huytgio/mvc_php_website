@@ -76,5 +76,10 @@ public function insert($query){
      return false;
     }
    }
+
+   public function __destruct()
+   {
+    
+   }
  
 }
