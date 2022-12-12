@@ -1,3 +1,33 @@
+<?php
+include './lib/session.php';
+Session::init();
+include '/xampp/htdocs/mvc/lib/database.php';
+include '/xampp/htdocs/mvc/helpers/format.php';
+/* include './classes/brand.php';
+include './classes/cart.php';
+include './classes/category.php';
+include './classes/product.php';
+include './classes/user.php'; */
+
+spl_autoload_register(function($className) {
+    include_once "./classes/" .$className . '.php';
+});
+$db = new Database();
+$fm = new Format();
+$cart = new cart();
+$user = new user();
+$cat = new category();
+$brand = new brand();
+$pd = new product();
+
+?>
+
+<?php
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Pragma: no-cache"); 
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
+  header("Cache-Control: max-age=2592000");
+?>
 <!DOCTYPE HTML>
 <head>
 <title>Tử Kỳ Shop</title>
@@ -35,8 +65,21 @@
 			    <div class="shopping_cart">
 					<div class="cart">
 						<a href="#" title="View my shopping cart" rel="nofollow">
-								<span class="cart_title">Sản Phẩm</span>
-								<span class="no_product">(trống)</span>
+								<span class="cart_title">
+									<?php
+                                    $sum2 = Session::get("sum2");
+                                    echo $sum2;
+                                    
+									?>
+								</span>
+								<span class="no_product">
+								<?php
+                                $sum = Session::get("sum");
+								echo number_format($sum, 0, ',', '.') . " VND";
+								
+								
+								?>
+								</span>
 							</a>
 						</div>
 			      </div>

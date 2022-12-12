@@ -179,14 +179,14 @@
 					if($result_pd['pd_status']==1)
 					{
                     ?>
-                        <option selected value="1">Hàng mới</option>
-                        <option value="0">Hàng qua tay</option>
+                        <option selected value=1>Hàng mới</option>
+                        <option value=0>Hàng qua tay</option>
                     <?php
 					}elseif($result_pd['pd_status']==0)
 					{
                     ?>
-                        <option value="1">Hàng mới</option>
-                        <option selected value="0">Hàng qua tay</option>
+                        <option value=1>Hàng mới</option>
+                        <option selected value=0>Hàng qua tay</option>
                     <?php
 					}
 					?>

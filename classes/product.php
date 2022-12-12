@@ -1,6 +1,7 @@
 <?php
-include_once '../lib/database.php';
-include_once '../helpers/format.php';
+$filepath = realpath((dirname(__FILE__)));
+include_once ($filepath.'/../lib/database.php');
+include_once ($filepath.'/../helpers/format.php');
 
  class product 
  {
@@ -37,10 +38,10 @@ include_once '../helpers/format.php';
         $uploaded_image = "upload/" . $unique_image;
         
 
-        if(empty($product_Name) || empty($category) || empty($brand) || empty($product_desc) || empty($price) || $status="" || empty($unique_image) )
+        if(empty($product_Name) || empty($category) || empty($brand) || empty($product_desc) || empty($price) || $status="" || empty($file_name) )
         {
             
-            $alert = "Có mục rỗng khi thêm sản phẩm!";
+            $alert = "Có mục rỗng khi thêm sản phẩm!".$status;
             //$alert = $status;
             return $alert;
         } else
@@ -167,9 +168,10 @@ include_once '../helpers/format.php';
         return $result;
         if($result)
             {
-                if(file_exists($linkdel))
+                if($linkdel)
                 {
                 unlink($linkdel);
+                echo $linkdel;
                 $alert = "<span class='success'> Đã xóa sản phẩm thành công và xóa luôn hình ảnh </span>";
                 return $alert;
                 }else
@@ -186,6 +188,28 @@ include_once '../helpers/format.php';
             }
     }
 
+    public function gethotpd()
+    {
+        $query = "SELECT * FROM tbl_product WHERE pd_status='1'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function getnewpd()
+    {
+        $query = "SELECT * FROM tbl_product ORDER BY product_ID desc";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getdtpdbyID($id)
+    {
+        $query = "SELECT tbl_product.*,tbl_category.cat_Name,tbl_brand.brand_Name
+        FROM tbl_product INNER JOIN tbl_category ON tbl_product.cat_ID = tbl_category.cat_ID
+        INNER JOIN tbl_brand ON tbl_product.brand_ID = tbl_brand.brand_ID
+        WHERE tbl_product.product_ID = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
     
  }
  

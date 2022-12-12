@@ -146,9 +146,8 @@
                     </td>
                     <td>
                         <select id="select" name="pd_status">
-                            <option>Chọn trạng thái</option>
-                            <option value="1">Hàng mới</option>
-                            <option value="0">Hàng qua tay</option>
+                            <option value="<?php echo 1+0 ?>">Hàng mới</option>
+                            <option value="<?php echo 0+0 ?>">Hàng qua tay</option>
                         </select>
                     </td>
                 </tr>
@@ -156,7 +155,7 @@
 				<tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Save" />
+                        <input type="submit" name="submit" Value="Submit" />
                     </td>
                 </tr>
             </table>
