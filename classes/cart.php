@@ -27,7 +27,7 @@ include_once ($filepath.'/../helpers/format.php');
         $price = $result['price'];
         $img = $result['image'];
         
-        $check_add = "SELECT * FROM tbl_cart WHERE product_ID ='$id'";
+        $check_add = "SELECT * FROM tbl_cart WHERE product_ID ='$id' and ses_ID = '$ses_ID'";
         $result_check = $this->db->select($check_add);
         if($result_check)
         {
@@ -90,6 +90,14 @@ include_once ($filepath.'/../helpers/format.php');
                 $alert = "<span class='success'>Lỗi khi xóa</span>";
                 return $alert;
             }
+    }
+
+    public function getcart()
+    {
+        $query = "SELECT * FROM tbl_cart
+        order by cart_ID desc";
+        $result = $this->db->select($query);
+        return $result;
     }
  }
  

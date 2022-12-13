@@ -1,8 +1,8 @@
 <?php
 include './lib/session.php';
 Session::init();
-include '/xampp/htdocs/mvc/lib/database.php';
-include '/xampp/htdocs/mvc/helpers/format.php';
+include './lib/database.php';
+include './helpers/format.php';
 /* include './classes/brand.php';
 include './classes/cart.php';
 include './classes/category.php';
@@ -12,6 +12,8 @@ include './classes/user.php'; */
 spl_autoload_register(function($className) {
     include_once "./classes/" .$className . '.php';
 });
+$pm = new payment();
+$cs = new customer();
 $db = new Database();
 $fm = new Format();
 $cart = new cart();
@@ -83,7 +85,7 @@ $pd = new product();
 							</a>
 						</div>
 			      </div>
-		   <div class="login"><a href="admin/login.php">Đăng Nhập</a></div>
+		   <div class="login"><a href="admin/login.php"> admin</a></div>
 		 <div class="clear"></div>
 	 </div>
 	 <div class="clear"></div>
@@ -94,7 +96,7 @@ $pd = new product();
 	  <li><a href="products.php">Sản Phẩm</a> </li>
 	  <li><a href="topbrands.php">Nhãn hiệu</a></li>
 	  <li><a href="cart.php">Vỏ Hàng</a></li>
-	  <li><a href="contact.php">Về Chúng Tôi</a> </li>
+	  <li><a href="login.php">Thành viên Đăng nhập</a> </li>
 	  <div class="clear"></div>
 	</ul>
 </div>

@@ -1,25 +1,25 @@
 <?php
 include 'inc/header.php';
 include 'inc/slider.php';
-if(isset($_GET['catpbid']))
+if(isset($_GET['brandpbid']))
       {
-          $id = $_GET['catpbid'];
+          $id = $_GET['brandpbid'];
       }
 ?>
 
  <div class="main">
 	<?php
-    $getpdbycatID = $pd->getpdbycatID($id);
-	if($getpdbycatID)
+    $getpdbybrandID = $pd->getpdbybrandID($id);
+	if($getpdbybrandID)
 	{
-		while($result = $getpdbycatID->fetch_assoc()){
+		while($result = $getpdbybrandID->fetch_assoc()){
 			
 		
 	?>
     <div class="content">
     	<div class="content_top">
     		<div class="heading">
-    		<h3><?php echo $result['cat_Name'] ?></h3>
+    		<h3><?php echo $result['brand_Name'] ?></h3>
     		</div>
     		<div class="clear"></div>
     	</div>

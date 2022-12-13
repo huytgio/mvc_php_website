@@ -210,7 +210,53 @@ include_once ($filepath.'/../helpers/format.php');
         $result = $this->db->select($query);
         return $result;
     }
-    
+
+    public function getnew_cc()
+    {
+        $query = "SELECT * FROM tbl_product WHERE cat_ID = '17' ORDER BY product_ID desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getnew_tt()
+    {
+        $query = "SELECT * FROM tbl_product WHERE cat_ID = '18' ORDER BY product_ID desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getnew_cu()
+    {
+        $query = "SELECT * FROM tbl_product WHERE cat_ID = '19' ORDER BY product_ID desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getnew_pk()
+    {
+        $query = "SELECT * FROM tbl_product WHERE cat_ID >= 20 ORDER BY product_ID desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function getpdbycatID($id)
+    {
+        $query = "SELECT tbl_product.*,tbl_category.cat_Name,tbl_brand.brand_Name
+        FROM tbl_product 
+        INNER JOIN tbl_category ON tbl_product.cat_ID = tbl_category.cat_ID
+        INNER JOIN tbl_brand ON tbl_product.brand_ID = tbl_brand.brand_ID
+        WHERE tbl_product.cat_ID = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function getpdbybrandID($id)
+    {
+        $query = "SELECT tbl_product.*,tbl_category.cat_Name,tbl_brand.brand_Name
+        FROM tbl_product 
+        INNER JOIN tbl_category ON tbl_product.cat_ID = tbl_category.cat_ID
+        INNER JOIN tbl_brand ON tbl_product.brand_ID = tbl_brand.brand_ID
+        WHERE tbl_product.brand_ID = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
  }
  
  

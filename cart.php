@@ -49,7 +49,7 @@ if(isset($_GET['del_ID']))
                             $get_pd_cart = $cart->get_pd_cart();
                             if ($get_pd_cart) {
 	                            $i = 0;
-	                            $t = 1;
+	                            $totalquant = 0;
 	                            while ($result = $get_pd_cart->fetch_assoc()) {
 
 
@@ -70,7 +70,7 @@ if(isset($_GET['del_ID']))
 		                            $totalprice = $numprice * $result['quantity'];
 		                            $totalprice1 = number_format($totalprice, 0, ',', '.');
 		                            $i += $totalprice;
-		                            $totalquant = $t * $result['quantity'];
+		                            $totalquant += $result['quantity'];
 		                            echo $totalprice1 . " VND";
 
                                 ?></td>
@@ -139,12 +139,8 @@ if(isset($_GET['del_ID']))
 							</tr>
 					   </table>
 					</div>
-					<div class="shopping">
-						<div class="shopleft">
-							<a href="index.php"> <img src="images/shop.png" alt="" /></a>
-						</div>
 						<div class="shopright">
-							<a href="login.php"> <img src="images/check.png" alt="" /></a>
+							<a href="./vnpay_php/index.php?gtotal=<?php echo $gtotal?>&totalquant=<?php echo $totalquant ?>"style="position:sticky; left:1350px; top:1010px;"> <img  src="images/check.png" alt="" /></a>
 						</div>
 					</div>
     	</div>  	

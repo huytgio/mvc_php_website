@@ -62,11 +62,24 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']))
 	<?php
 	}
 }
+           
 	?>
 				<div class="rightsidebar span_3_of_1">
-					<h2>CATEGORIES</h2>
+					<h2>Danh mục sản phụ</h2>
 					<ul>
-				      <li><a href="productbycat.php">Mobile Phones</a></li>
+					<?php $get_cat = $cat->show_category();
+					if($get_cat)
+					{
+						while($r_getcat = $get_cat->fetch_assoc())
+						{
+
+						
+					?>
+				      <li><a href="productbycat.php?catpbid=<?php echo $r_getcat['cat_ID'] ?>"><?php echo $r_getcat['cat_Name'] ?></a></li>
+					  <?php
+					  }
+					}
+					?>
     				</ul>
     	
  				</div>
